@@ -29,7 +29,7 @@ Int8量化后:
 
 ```bash
 project dir
-	├── bgr2rgb  # 实现BGR转RGB的cuda加速
+    ├── bgr2rgb  # 实现BGR转RGB的cuda加速
     |   ├── Makefile
     |   └── bgr2rgb.cu
     ├── bilinear  # 实现双线性插值的cuda加速
