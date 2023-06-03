@@ -5,7 +5,7 @@ OPENCV_INC_PATH = /usr/local/include/opencv4
 OPENCV_LIB_PATH = /usr/local/lib
 INCLUDE         = -I$(CUDA_PATH)/include -I$(TRT_INC_PATH) -I$(OPENCV_INC_PATH)
 LDFLAG          = -L$(CUDA_PATH)/lib64 -lcudart -L$(TRT_LIB_PATH) -lnvinfer
-LDFLAG         += -L$(OPENCV_LIB_PATH) -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_dnn
+LDFLAG         += -L$(OPENCV_LIB_PATH) -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
 
 CC = nvcc
 
