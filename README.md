@@ -1,4 +1,5 @@
 # Cuda programming speed up image preprocessing
+[READMA中文版](https://github.com/emptysoal/cuda-image-preprocess/blob/main/README-chinese.md)
 
 ## Introduction
 
