@@ -30,7 +30,7 @@ Int8 quantization:
 
 ```bash
 project dir
-	├── bgr2rgb  # cuda code achieve BGR to RGB 
+    ├── bgr2rgb  # cuda code achieve BGR to RGB 
     |   ├── Makefile
     |   └── bgr2rgb.cu
     ├── bilinear  # cuda code achieve bilinear resize
