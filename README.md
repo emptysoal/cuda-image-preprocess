@@ -16,13 +16,13 @@
 
 FP32:
 
-| C++ image preproce | cuda image preprocess |
+| C++ image preproce | CUDA image preprocess |
 | :----------------: | :-------------------: |
 |       25 ms        |         19 ms         |
 
 Int8 quantization:
 
-| C++ image preproce | cuda image preprocess |
+| C++ image preproce | CUDA image preprocess |
 | :----------------: | :-------------------: |
 |       10 ms        |       **3 ms**        |
 
