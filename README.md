@@ -1,100 +1,99 @@
-# Cuda programming speed up image preprocessing
-[READMA中文版](https://github.com/emptysoal/cuda-image-preprocess/blob/main/README-chinese.md)
+# Cuda编程加速图像预处理
 
-## Introduction
+## 项目简介
 
-- Based on `cuda` and `opencv` 
+- 基于 `cuda` 和 `opencv` 环境
 
-- Target:
-  - Can be used alone to speed up image processing operations;
-  - Combined with the use of TensorRT, the inferencing speed is further accelerated.
+- **目标：**
+  - 单独使用，以加速图像处理操作；
+  - **结合 TensorRT 使用，进一步加快推理速度**
 
-## Speed
+## 加速效果
 
-- Here we compare the tensorrt inference speed before and after `Deeplabv3+` preprocessing with `cuda`
-- Not using cuda code of image preprocessing, refer to my another [tensorrt](https://github.com/emptysoal/tensorrt-experiment)  project
+- 这里对比 `Deeplabv3+ ` 使用  `cuda` 预处理前后的 tensorrt 推理速度
+- 未使用cuda图像预处理的代码，可参考作者的另一个  [tensorrt](https://github.com/emptysoal/tensorrt-experiment)  的项目：
 
-FP32:
+FP32精度:
 
-| C++ image preproce | CUDA image preprocess |
-| :----------------: | :-------------------: |
-|       25 ms        |         19 ms         |
+| C++图像预处理 | CUDA图像预处理 |
+| :-----------: | :------------: |
+|     25 ms     |     19 ms      |
 
-Int8 quantization:
+Int8量化后:
 
-| C++ image preproce | CUDA image preprocess |
-| :----------------: | :-------------------: |
-|       10 ms        |       **3 ms**        |
+| C++图像预处理 | CUDA图像预处理 |
+| :-----------: | :------------: |
+|     10 ms     |    **3 ms**    |
 
-## File description
+## 文件说明
 
 ```bash
 project dir
-    ├── bgr2rgb  # cuda code achieve BGR to RGB 
+	├── bgr2rgb  # 实现BGR转RGB的cuda加速
     |   ├── Makefile
     |   └── bgr2rgb.cu
-    ├── bilinear  # cuda code achieve bilinear resize
+    ├── bilinear  # 实现双线性插值的cuda加速
     |   ├── Makefile
     |   └── resize.cu
-    ├── hwc2chw  # cuda code achieve shape from HWC to CHW, such as np.transpose((2, 0, 1))
+    ├── hwc2chw  # 实现相当于transpose((2, 0, 1))的cuda加速
     |   ├── Makefile
     |   └── transpose.cu
-    ├── normalize  # cuda code achieve image data normalization
+    ├── normalize  # 实现归一化的cuda加速
     |   ├── Makefile
     |   └── normal.cu
-    ├── preprocess  # unite the above(not simple stitching), achieve common image preprocessing
+    ├── preprocess  # 汇总以上的图像处理（不是简单的拼接），实现常用的图像预处理，之后输入到网络当中
     |   ├── Makefile
     |   └── preprocess.cu
-    ├── union_tensorrt  # An example for uniting TensorRT, speed up Deeplabv3+ inferencing
+    ├── union_tensorrt  # 将上述的图像预处理，结合TensorRT一起使用，对比推理加速效果
     |   ├── Makefile
     |   ├── preprocess.cu
     |   ├── preprocess.h
-    |   └── trt_infer.cpp
-    └── lena.jpg  # Pictures for testing
+    |   └── trt_infer.cpp  # 用于模型推理
+    └── lena.jpg  # 用于测试的图片
 ```
 
-## Usages
+## 使用说明
 
-### A single operation to speed up image processing
+### 图像加速单一操作：
 
-- For directories: bgr2rgb、bilinear、hwc2chw、normalize
+- 对于目录：bgr2rgb、bilinear、hwc2chw、normalize，实现单一功能上的图像操作加速
+- 使用测试：
 
 ```bash
 cd <dir name>
 make
 ./<bin file> <image path>
 
-# For example:
+example:
 cd bgr2rgb
 make
 ./bgr2rgb ../lena.jpg
-# Then you can see the result of the image lena.jpg after the exchange of R channel and B channel, and save it in the current directory 
 ```
 
-Note: If the cuda or opencv installation directory is different from the one in the Makefile, remember to switch to your own 
+备注：如果 cuda 或 opencv 安装目录与 Makefile 中的不同，记得切换成自己的
 
-### General image preprocessing
+### 常规图像预处理
 
-- Before model inference，images usually need to be Resize, BGR to RGB, HWC to CHW, and Normalize
-- You can implement this process using the following steps:
+- 在推理之前，图像通常需经过 Resize、BGR to RGB、HWC to CHW、Normalize
+- 使用测试：
 
 ```bash
 cd preprocess
 make
-./preprocess ../lena.jpg
+./preprocess ../lena.jpg  # 即可对图像完成上述全部操作
 ```
 
-### Used in combination with TensorRT
+### 结合 TensorRT 使用
 
-Method：
+使用方式：
 
-1）According to my another [tensorrt](https://github.com/emptysoal/tensorrt-experiment) project, building environment, download datasets, and training Deeplabv3+ network 
+1）根据作者另一个 [tensorrt](https://github.com/emptysoal/tensorrt-experiment) 的项目，构建好环境，下载分割数据集，并训练Deeplabv3+网络
 
-2）Enter into directory: `Deeplabv3+/TensorRT/C++/api_model/`
+2）进入到目录：`Deeplabv3+/TensorRT/C++/api_model/`
 
-3）Place the files which in this project `union_tensorrt` directory into the above directory (or replace the original file) 
+3）将本项目的`union_tensorrt`目录下的文件放入上述目录中（或替换原文件）
 
-4）Execute the following commands in sequence to use TensorRT inference
+4）依次执行以下命令来使用TensorRT推理
 
 ```bash
 python pth2wts.py
@@ -102,7 +101,7 @@ make
 ./trt_infer
 ```
 
-5）The following results indicate that the operation is successful, and the segmentation result image will be generated in the same directory 
+5）得到以下结果，说明运行成功，同目录下会生成分割结果图像
 
 ```bash
 Loading weights: ./para.wts
