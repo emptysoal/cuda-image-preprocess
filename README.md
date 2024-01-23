@@ -35,7 +35,7 @@ project dir
     ├── bilinear  # 实现双线性插值的cuda加速
     |   ├── Makefile
     |   └── resize.cu
-    ├── hwc2chw  # 实现相当于transpose((2, 0, 1))的cuda加速
+    ├── hwc2chw  # 实现通道维度前置的cuda加速
     |   ├── Makefile
     |   └── transpose.cu
     ├── normalize  # 实现归一化的cuda加速
