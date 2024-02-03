@@ -16,7 +16,16 @@
 |               |      FP32      |      FP16      |      INT8      |
 | :-----------: | :------------: | :------------: | :------------: |
 | C++图像预处理 |      22 ms      |     12 ms     |      10 ms     |
-| CUDA图像预处理 |     15 ms     |      5 ms      |    **3 ms**    |
+| CUDA图像预处理 |     15 ms     |      5 ms      |      3 ms      |
+
+- 对比 `YOLOv5-v5.0` 使用  `cuda` 预处理前后的 tensorrt 推理速度
+
+|               |      FP32      |      FP16      |      INT8      |
+| :-----------: | :------------: | :------------: | :------------: |
+| C++图像预处理 |      12 ms      |     8 ms     |      6 ms     |
+| CUDA图像预处理 |     6 ms     |      3 ms      |      3 ms      |
+
+YOLOv5 TensorRT 推理代码源自作者其他的项目 [C++预处理](https://github.com/emptysoal/TensorRT-v8-YOLOv5-v5.0/tree/main) [CUDA预处理](https://github.com/emptysoal/TensorRT-v8-YOLOv5-v5.0/tree/cpp-preproc)
 
 ## 文件说明
 
