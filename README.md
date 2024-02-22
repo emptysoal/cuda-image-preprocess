@@ -13,14 +13,14 @@
 - 这里对比 `Deeplabv3+ ` 使用  `cuda` 预处理前后的 tensorrt 推理速度
 - 未使用cuda图像预处理的代码，可参考作者的另一个  [tensorrt](https://github.com/emptysoal/tensorrt-experiment)  的项目：
 
-|               |      FP32      |      FP16      |      INT8      |
+|   Deeplabv3+  |      FP32      |      FP16      |      INT8      |
 | :-----------: | :------------: | :------------: | :------------: |
 | C++图像预处理 |      22 ms      |     12 ms     |      10 ms     |
 | CUDA图像预处理 |     15 ms     |      5 ms      |      3 ms      |
 
 - 对比 `YOLOv5-v5.0` 使用  `cuda` 预处理前后的 tensorrt 推理速度
 
-|               |      FP32      |      FP16      |      INT8      |
+|  YOLOv5-v5.0  |      FP32      |      FP16      |      INT8      |
 | :-----------: | :------------: | :------------: | :------------: |
 | C++图像预处理 |      12 ms      |     8 ms     |      6 ms     |
 | CUDA图像预处理 |     6 ms     |      3 ms      |      3 ms      |
