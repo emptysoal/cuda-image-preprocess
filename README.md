@@ -31,7 +31,7 @@ YOLOv5 TensorRT 推理代码源自作者其他的项目 [C++预处理](https://g
 
 ```bash
 project dir
-	├── bgr2rgb  # 实现BGR转RGB的cuda加速
+    ├── bgr2rgb  # 实现BGR转RGB的cuda加速
     |   ├── Makefile
     |   └── bgr2rgb.cu
     ├── bilinear  # 实现双线性插值的cuda加速
