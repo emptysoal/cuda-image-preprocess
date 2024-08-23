@@ -89,7 +89,7 @@ make
 
 使用方式：
 
-1）根据作者另一个 [tensorrt](https://github.com/emptysoal/tensorrt-experiment) 的项目，构建好环境，下载分割数据集，并训练Deeplabv3+网络
+1）根据作者的另一个 [tensorrt](https://github.com/emptysoal/tensorrt-experiment) 的项目，构建好环境，下载分割数据集，并训练Deeplabv3+网络
 
 2）进入到目录：`Deeplabv3+/TensorRT/C++/api_model/`
 
